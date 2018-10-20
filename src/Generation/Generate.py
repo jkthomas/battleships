@@ -21,7 +21,7 @@ class Generate(object):
 
     def generate_single_ship_position(self, ship_length):
         board_indices = []
-        for i in range(self.board_length - ship_length):
+        for i in range(self.board_length - ship_length + 1):
             board_indices.append(i)
 
         while True:
