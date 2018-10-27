@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67056f02-0e4d-44b1-842b-eef22c458169" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Battleships.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Battleships.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Generation/Generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Generation/Generate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,6 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/battleships$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1540660459081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Battleships$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1540499618320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="FUSProjectUsageTrigger">
@@ -51,32 +54,93 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-586726574">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="kv" value="3" />
+          <entry key="py" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="Python" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="kv" value="53" />
+          <entry key="py" value="620" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="53" />
+          <entry key="Python" value="620" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+            <state relative-caret-position="204">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <marker date="1540073543068" expanded="true" signature="59:64" ph="..." />
-                <marker date="1540073543068" expanded="true" signature="59:198" ph="..." />
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/View/GameScreen.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Battleships.kv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/View/Layouts/GameLayout.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="88" selection-start-line="20" selection-start-column="18" selection-end-line="21" selection-end-column="88" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Generation/Generate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
+            <state relative-caret-position="1292">
               <caret line="121" column="102" selection-start-line="121" selection-start-column="102" selection-end-line="121" selection-end-column="102" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <marker date="1540499611425" expanded="true" signature="156:161" ph="..." />
-                <marker date="1540499611425" expanded="true" signature="4640:4641" ph="..." />
               </folding>
             </state>
           </provider>
@@ -100,8 +164,13 @@
         <option value="$PROJECT_DIR$/src/Utilities/Fieldtype.py" />
         <option value="$PROJECT_DIR$/src/Generation/Locate.py" />
         <option value="$PROJECT_DIR$/src/Utilities/Direction.py" />
-        <option value="$PROJECT_DIR$/src/main.py" />
         <option value="$PROJECT_DIR$/src/Generation/Generate.py" />
+        <option value="$PROJECT_DIR$/src/View/MainScreen.py" />
+        <option value="$PROJECT_DIR$/src/View/Battleships.kv" />
+        <option value="$PROJECT_DIR$/src/main.py" />
+        <option value="$PROJECT_DIR$/src/View/GameScreen.py" />
+        <option value="$PROJECT_DIR$/src/Battleships.kv" />
+        <option value="$PROJECT_DIR$/src/View/Layouts/GameLayout.py" />
       </list>
     </option>
   </component>
@@ -126,25 +195,25 @@
         <subPane>
           <expand>
             <path>
-              <item name="Battleships" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleships" type="462c0819:PsiDirectoryNode" />
+              <item name="battleships" type="b2602c69:ProjectViewProjectNode" />
+              <item name="battleships" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Battleships" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleships" type="462c0819:PsiDirectoryNode" />
+              <item name="battleships" type="b2602c69:ProjectViewProjectNode" />
+              <item name="battleships" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Battleships" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleships" type="462c0819:PsiDirectoryNode" />
+              <item name="battleships" type="b2602c69:ProjectViewProjectNode" />
+              <item name="battleships" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Generation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Battleships" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleships" type="462c0819:PsiDirectoryNode" />
+              <item name="battleships" type="b2602c69:ProjectViewProjectNode" />
+              <item name="battleships" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Utilities" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -155,7 +224,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -177,7 +247,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Aplikacje\PyCharm 2018.2.4\PyProjects\Battleships\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python37-32\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -238,23 +308,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2281491" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23081024" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32974428" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32974428" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49840087" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39973083" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32974428" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32974428" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946696" weight="0.329718" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32974428" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50159913" side_tool="true" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -278,47 +348,15 @@
     <MESSAGE value="[GENERATION] Updated position picking algorithm to pick missed locations." />
     <option name="LAST_COMMIT_MESSAGE" value="[GENERATION] Updated position picking algorithm to pick missed locations." />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/Generation/Generate.py</url>
-          <line>27</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Utilities/Fieldtype.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <marker date="1539869196829" expanded="true" signature="46:51" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Python370/Lib/random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="260" selection-start-line="260" selection-end-line="260" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <marker date="1540073543068" expanded="true" signature="59:64" ph="..." />
-            <marker date="1540073543068" expanded="true" signature="59:198" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://E:/../Python370/Lib/random.py" />
     <entry file="file://$PROJECT_DIR$/src/Utilities/Direction.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -326,14 +364,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MainScreen.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/Battleships.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="20" lean-forward="true" selection-end-line="8" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Generation/Generate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
+        <state relative-caret-position="1292">
           <caret line="121" column="102" selection-start-line="121" selection-start-column="102" selection-end-line="121" selection-end-column="102" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <marker date="1540499611425" expanded="true" signature="156:161" ph="..." />
-            <marker date="1540499611425" expanded="true" signature="4640:4641" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Battleships.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/GameScreen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/Layouts/GameLayout.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="88" selection-start-line="20" selection-start-column="18" selection-end-line="21" selection-end-column="88" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
