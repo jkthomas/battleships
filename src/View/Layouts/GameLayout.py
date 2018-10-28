@@ -1,28 +1,20 @@
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.button import Button
-from Generation import Generate
-from kivy import utils
+from kivy.properties import ObjectProperty
+from kivy.uix.boxlayout import BoxLayout
+from View.Layouts.BoardLayout import BoardLayout
+from View.Layouts.BreakLayout import BreakLayout
 
 
-class GameLayout(GridLayout):
+class GameLayout(BoxLayout):
+    player_board = ObjectProperty()
+    computer_board = ObjectProperty()
+    break_layout = ObjectProperty()
 
     def __init__(self):
         super(GameLayout, self).__init__()
-        self.generate_initial_board()
+        self.player_board = BoardLayout()
+        self.computer_board = BoardLayout()
+        self.break_layout = BreakLayout()
 
-    def generate_initial_board(self):
-        generator = Generate.Generate()
-        fields = generator.generate_all_ships_positions()
-        for field_row in fields:
-            for field in field_row:
-                background_color = utils.get_color_from_hex('#66e0ff')  # water
-                if field == 2:
-                    background_color = utils.get_color_from_hex('#a6a6a6')  # ship
-                # if field == 3:
-                #     background_color = utils.get_color_from_hex('#ffff00')  # occupied
-
-                self.add_widget(Button(
-                    id=str(1),
-                    text=str(field),
-                    background_color=background_color
-                ))
+        self.add_widget(self.player_board)
+        self.add_widget(self.break_layout)
+        self.add_widget(self.computer_board)
