@@ -1,0 +1,14 @@
+#:import utils kivy.utils
+
+<GameLayout@GridLayout>:
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex('#660066')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    orientation: "vertical"
+    cols: 10
+
+<GameScreen@Screen>:
+    size_hint_y: 1.0
