@@ -5,6 +5,8 @@ from kivy.core.window import Window
 
 
 class GameScreen(Screen):
+    player_points = 0
+    computer_points = 0
     game_layout = ObjectProperty()
 
     def __init__(self):
