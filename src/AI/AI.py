@@ -1,8 +1,6 @@
 import random
-import numpy as np
 from Utilities import Fieldtype
-from Utilities import DirectionList
-from Utilities import  AIState
+from AI import AIState
 from Generation.Generate import Generate
 
 
