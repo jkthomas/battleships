@@ -9,10 +9,9 @@ import numpy as np
 
 class AI(object):
 
-    def __init__(self):
+    def __init__(self, fields):
         super(AI, self).__init__()
-        generator = Generate()
-        self.fields = generator.generate_all_ships_positions()
+        self.fields = fields
 
         self.board_length = 10
         self.board = []
@@ -241,7 +240,7 @@ class AI(object):
                                 if self.board[tempy][tempx] != Fieldtype.Fieldtype.Hit.value:
                                    self.board[tempy][tempx] = Fieldtype.Fieldtype.Miss.value
                 y+=1
-                
+
         elif self.direction == Direction.Direction.Horizontal:
             while x-1 >= 0 and self.board[y][x-1] == Fieldtype.Fieldtype.Hit.value:
                 x = x-1
