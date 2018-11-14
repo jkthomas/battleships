@@ -35,6 +35,17 @@ class AI(object):
         self.index = 1
 
         self.direction = Direction.Direction.Undefined
+        self.moves = []
+
+    def make_proper_move(self):
+        while True:
+            m = self.make_move()
+            if m not in self.moves and m is not None:
+                self.moves.append(m)
+                return m
+            #else:
+            #    break
+
 
     def generate_empty_board(self):
         self.board = [[1 for x in range(self.board_length)] for y in range(self.board_length)]
@@ -211,9 +222,9 @@ class AI(object):
         print(np.matrix(self.board))
         print("\n")
         print(np.matrix(self.fields))
-        #print("Zostalo %d x4, %d x3, %d x2, %d x1" % (
-        #self.four_masted_ships, self.three_masted_ships, self.two_masted_ships,
-        #self.one_masted_ships))
+        print("Zostalo %d x4, %d x3, %d x2, %d x1" % (
+        self.four_masted_ships, self.three_masted_ships, self.two_masted_ships,
+        self.one_masted_ships))
         print("\n\n")
 
     def generate_occupied_tiles(self, direction: Direction):
@@ -221,6 +232,17 @@ class AI(object):
 
     def ships_left(self):
         if self.one_masted_ships == 0 and self.two_masted_ships == 0 and self.three_masted_ships == 0 and self.four_masted_ships == 0:
+            return False
+        else:
+            return True
+
+    def can_make_proper_move(self):
+        moves = 0
+        for y in range(0, self.board_length-1):
+            for x in range(0, self.board_length-1):
+                if self.board[y][x] == Fieldtype.Fieldtype.Water.value:
+                    moves += 1
+        if moves == 0:
             return False
         else:
             return True
