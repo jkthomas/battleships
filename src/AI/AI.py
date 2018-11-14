@@ -68,6 +68,7 @@ class AI(object):
                 self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
             else:
                 self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
+            return 10 * self.row_position + self.column_position
 
         elif self.state == AIState.AIState.Hit:  # if hit, check if it was a one_masted_ship or not
             if self.two_masted_ships > 0 or self.three_masted_ships > 0 or self.four_masted_ships > 0: #if there are longer ships than 1, search for that ships
@@ -88,6 +89,7 @@ class AI(object):
                             return 10 * self.temp_row_position + self.column_position
                     else:
                         self.dirs = DirectionList.DirectionList.Bottom
+                        self.make_move()
                 elif self.dirs == DirectionList.DirectionList.Top:
                     self.dirs = DirectionList.DirectionList.Bottom
 
@@ -107,6 +109,7 @@ class AI(object):
                             return 10 * self.temp_row_position + self.column_position
                     else:
                         self.dirs=DirectionList.DirectionList.Left
+                        self.make_move()
                 elif self.dirs == DirectionList.DirectionList.Bottom:
                     self.dirs = DirectionList.DirectionList.Left
 
@@ -126,6 +129,7 @@ class AI(object):
                             return 10 * self.row_position + self.temp_column_position
                     else:
                         self.dirs = DirectionList.DirectionList.Right
+                        self.make_move()
                 elif self.dirs == DirectionList.DirectionList.Left:
                     self.dirs = DirectionList.DirectionList.Right
 
@@ -145,6 +149,7 @@ class AI(object):
                             return 10 * self.row_position + self.temp_column_position
                     else:
                         self.dirs = DirectionList.DirectionList.Empty
+                        self.make_move()
                 else:
 
                     if self.ship_length == 4:
@@ -173,6 +178,7 @@ class AI(object):
                         self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
                     else:
                         self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
+                    return 10 * self.row_position + self.column_position
                     #self.make_move()
 
             else: #there are only one_masted_ships left
@@ -188,15 +194,16 @@ class AI(object):
                     self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
                 else:
                     self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
+                return 10 * self.row_position + self.column_position
 
     def print_tab(self):
         print(np.matrix(self.board))
-        print("\n")
-        print(np.matrix(self.fields))
-        print("Zostalo %d x4, %d x3, %d x2, %d x1" % (
-        self.four_masted_ships, self.three_masted_ships, self.two_masted_ships,
-        self.one_masted_ships))
-        print("--------\n")
+        #print("\n")
+        #print(np.matrix(self.fields))
+        #print("Zostalo %d x4, %d x3, %d x2, %d x1" % (
+        #self.four_masted_ships, self.three_masted_ships, self.two_masted_ships,
+        #self.one_masted_ships))
+        print("\n\n")
 
     def generate_occupied_tiles(self, direction: Direction):
         print(direction)
