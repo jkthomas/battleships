@@ -3,19 +3,18 @@ from Utilities import Fieldtype
 from AI import AIState
 from AI import DirectionList
 from Utilities import Direction
-from Generation.Generate import Generate
 import numpy as np
 
 
 class AI(object):
 
-    def __init__(self):
+    def __init__(self, fields):
         super(AI, self).__init__()
-        generator = Generate()
-        self.fields = generator.generate_all_ships_positions()
+        self.fields = fields
 
         self.board_length = 10
         self.board = []
+        self.generate_empty_board()
 
         self.state = AIState.AIState.Searching
 

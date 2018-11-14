@@ -2,6 +2,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 
+from AI.AI import AI
 from Generation.Generate import Generate
 from kivy import utils
 
@@ -14,11 +15,13 @@ class BoardLayout(GridLayout):
         self.is_computer = is_computer
         self.board_turn = True
         self.ship_fields_hit = 0
+        self.computer = None
         self.generate_initial_board()
 
     def generate_initial_board(self):
         generator = Generate()
         fields = generator.generate_all_ships_positions()
+        self.computer = AI(fields)
         field_id = 1
         for field_row in fields:
             for field in field_row:
@@ -37,6 +40,10 @@ class BoardLayout(GridLayout):
                     field_button.bind(on_release=self.player_hit_field)
                 self.add_widget(field_button)
                 field_id += 1
+        if self.is_computer:
+            self.add_widget(Label(text="PLANSZA GRACZA", text_size=(300, None), halign='right'))
+        else:
+            self.add_widget(Label(text="PLANSZA KOMPUTERA", text_size=(300, None), halign='right'))
 
     def give_turn(self):
         self.board_turn = True
@@ -63,22 +70,25 @@ class BoardLayout(GridLayout):
                 #    self.turn_dispatcher.x = 'player'
 
     def computer_hit_field(self):
-        while True:
-            button_index = 0
-            self.ids.button_index.disabled = True
-            if self.ids.button_index.text == '2':
-                self.ids.button_index.background_color = utils.get_color_from_hex('#66ff33')
-                self.ship_fields_hit += 1
-                if self.ship_fields_hit == 20:
-                    self.add_widget(Label(text="PRZEGRANA", text_size=(200, None), halign='right'))
-                    for element in self.children:
-                        element.disabled = True
+        computer_turn = True
+        while computer_turn:
+            button_index = self.computer.make_move()
+            for button in self.children:
+                if button.id == str(button_index):
+                    if button.text == '2':
+                        button.background_color = utils.get_color_from_hex('#66ff33')
+                        self.ship_fields_hit += 1
+                        if self.ship_fields_hit == 20:
+                            self.add_widget(Label(text="PRZEGRANA", text_size=(200, None), halign='right'))
+                            for element in self.children:
+                                element.disabled = True
+                            break
+                    else:
+                        button.disabled = True
+                        button.background_color = utils.get_color_from_hex('#ff0000')
+                        self.board_turn = False
+                        computer_turn = False
                     break
-            else:
-                self.ids.button_index.disabled = True
-                self.ids.button_index.background_color = utils.get_color_from_hex('#ff0000')
-                self.board_turn = False
 
-                if self.turn_dispatcher.x == 'computer':
-                    self.turn_dispatcher.x = 'player'
-                break
+        if self.turn_dispatcher.x == 'computer':
+            self.turn_dispatcher.x = 'player'
