@@ -71,16 +71,17 @@ class AI(object):
             return 10 * self.row_position + self.column_position
 
         elif self.state == AIState.AIState.Hit:  # if hit, check if it was a one_masted_ship or not
-            if self.two_masted_ships > 0 or self.three_masted_ships > 0 or self.four_masted_ships > 0: #if there are longer ships than 1, search for that ships
+            #if self.two_masted_ships > 0 or self.three_masted_ships > 0 or self.four_masted_ships > 0: #if there are longer ships than 1, search for that ships
 
                 #top
                 if self.dirs == DirectionList.DirectionList.Top and self.row_position > 0: # and self.board[self.row_position - self.index][self.column_position]!=Fieldtype.Fieldtype.Miss:
                     self.temp_row_position = self.row_position - self.index
-                    if self.temp_row_position >= 0:
+                    if self.temp_row_position >= 0 and self.board[self.row_position - self.index][self.column_position]!=Fieldtype.Fieldtype.Miss:
                         if self.fields[self.temp_row_position][self.column_position] == Fieldtype.Fieldtype.Ship.value:
                             self.board[self.temp_row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
                             self.ship_length += 1
                             self.index += 1
+                            self.direction=Direction.Direction.Vertical
                             return 10 * self.temp_row_position + self.column_position
                         else:
                             self.board[self.temp_row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
@@ -96,11 +97,12 @@ class AI(object):
                 #bottom
                 if self.dirs == DirectionList.DirectionList.Bottom and self.row_position < self.board_length-1: #and self.board[self.row_position + self.index][self.column_position]!=Fieldtype.Fieldtype.Miss:
                     self.temp_row_position = self.row_position + self.index
-                    if self.temp_row_position < self.board_length:
+                    if self.temp_row_position < self.board_length and self.board[self.row_position + self.index][self.column_position]!=Fieldtype.Fieldtype.Miss:
                         if self.fields[self.temp_row_position][self.column_position] == Fieldtype.Fieldtype.Ship.value:
                             self.board[self.temp_row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
                             self.ship_length += 1
                             self.index += 1
+                            self.direction=Direction.Direction.Vertical
                             return 10 * self.temp_row_position + self.column_position
                         else:
                             self.board[self.temp_row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
@@ -116,11 +118,12 @@ class AI(object):
                 #left
                 if self.dirs == DirectionList.DirectionList.Left and self.column_position > 0: # and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
                     self.temp_column_position = self.column_position - self.index
-                    if self.temp_column_position >= 0:
+                    if self.temp_column_position >= 0 and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
                         if self.fields[self.row_position][self.temp_column_position] == Fieldtype.Fieldtype.Ship.value:
                             self.board[self.row_position][self.temp_column_position] = Fieldtype.Fieldtype.Hit.value
                             self.ship_length += 1
                             self.index += 1
+                            self.direction=Direction.Direction.Horizontal
                             return 10 * self.row_position + self.temp_column_position
                         else:
                             self.board[self.row_position][self.temp_column_position] = Fieldtype.Fieldtype.Miss.value
@@ -133,14 +136,15 @@ class AI(object):
                 elif self.dirs == DirectionList.DirectionList.Left:
                     self.dirs = DirectionList.DirectionList.Right
 
-                #right
-                if self.dirs == DirectionList.DirectionList.Right and self.column_position < self.board_length-1: # and self.board[self.row_position][self.column_position + self.index] != Fieldtype.Fieldtype.Miss:
+                #right w pierwszym warunku jest jakiś błąd
+                if self.dirs == DirectionList.DirectionList.Right and self.column_position < self.board_length - 1: # and self.board[self.row_position][self.column_position + self.index] != Fieldtype.Fieldtype.Miss:
                     self.temp_column_position = self.column_position + self.index
-                    if self.temp_column_position < self.board_length:
+                    if self.temp_column_position < self.board_length:  #and self.board[self.row_position][self.column_position + self.index] != Fieldtype.Fieldtype.Miss:
                         if self.fields[self.row_position][self.temp_column_position] == Fieldtype.Fieldtype.Ship.value:
                             self.board[self.row_position][self.temp_column_position] = Fieldtype.Fieldtype.Hit.value
                             self.ship_length += 1
                             self.index += 1
+                            self.direction=Direction.Direction.Horizontal
                             return 10 * self.row_position + self.temp_column_position
                         else:
                             self.board[self.row_position][self.temp_column_position] = Fieldtype.Fieldtype.Miss.value
@@ -148,8 +152,14 @@ class AI(object):
                             self.index = 1
                             return 10 * self.row_position + self.temp_column_position
                     else:
-                        self.dirs = DirectionList.DirectionList.Empty
+                        self.dirs = DirectionList.DirectionList.Top
+                        self.state = AIState.AIState.Searching
+                        self.index = 1
                         self.make_move()
+                elif self.dirs == DirectionList.DirectionList.Right:
+                    self.dirs = DirectionList.DirectionList.Empty
+                    self.make_move()
+
                 else:
 
                     if self.ship_length == 4:
@@ -161,7 +171,7 @@ class AI(object):
                     elif self.ship_length == 1:
                         self.one_masted_ships-=1
 
-                    print("Statek mial dlugosc: %d, zostalo %d x4, %d x3, %d x2, %d x1" % (self.ship_length, self.four_masted_ships, self.three_masted_ships, self.two_masted_ships, self.one_masted_ships))
+                    #print("Statek mial dlugosc: %d, zostalo %d x4, %d x3, %d x2, %d x1" % (self.ship_length, self.four_masted_ships, self.three_masted_ships, self.two_masted_ships, self.one_masted_ships))
                     #self.generate_occupied_tiles(self.direction)
                     self.direction = Direction.Direction.Undefined
                     self.ship_length = 1
@@ -181,25 +191,26 @@ class AI(object):
                     return 10 * self.row_position + self.column_position
                     #self.make_move()
 
-            else: #there are only one_masted_ships left
-                self.state = AIState.AIState.Searching
-                self.select_random_field()
-                if self.fields[self.row_position][self.column_position] == Fieldtype.Fieldtype.Ship.value:
-                    # changing state - found a ship
-                    self.state = AIState.AIState.Hit
-                    # saving coords of that ship
-                    # self.temp_column_position = self.column_position
-                    # self.temp_row_position = self.row_position
-
-                    self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
-                else:
-                    self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
-                return 10 * self.row_position + self.column_position
+            # else: #there are only one_masted_ships left
+            #     self.state = AIState.AIState.Searching
+            #     self.select_random_field()
+            #     if self.fields[self.row_position][self.column_position] == Fieldtype.Fieldtype.Ship.value:
+            #         # changing state - found a ship
+            #         self.state = AIState.AIState.Hit
+            #         # saving coords of that ship
+            #         # self.temp_column_position = self.column_position
+            #         # self.temp_row_position = self.row_position
+            #
+            #         self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
+            #     else:
+            #         self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
+            #     return 10 * self.row_position + self.column_position
 
     def print_tab(self):
+        print("-----------")
         print(np.matrix(self.board))
-        #print("\n")
-        #print(np.matrix(self.fields))
+        print("\n")
+        print(np.matrix(self.fields))
         #print("Zostalo %d x4, %d x3, %d x2, %d x1" % (
         #self.four_masted_ships, self.three_masted_ships, self.two_masted_ships,
         #self.one_masted_ships))
@@ -209,7 +220,7 @@ class AI(object):
         print(direction)
 
     def ships_left(self):
-        if self.one_masted_ships==0 and self.two_masted_ships==0 and self.three_masted_ships==0 and self.four_masted_ships==0:
+        if self.one_masted_ships == 0 and self.two_masted_ships == 0 and self.three_masted_ships == 0 and self.four_masted_ships == 0:
             return False
         else:
             return True
