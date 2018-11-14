@@ -6,6 +6,8 @@ from AI.AI import AI
 from Generation.Generate import Generate
 from kivy import utils
 
+import numpy as np
+
 
 class BoardLayout(GridLayout):
 
@@ -22,7 +24,7 @@ class BoardLayout(GridLayout):
         generator = Generate()
         fields = generator.generate_all_ships_positions()
         self.computer = AI(fields)
-        field_id = 1
+        field_id = 0
         for field_row in fields:
             for field in field_row:
                 background_color = utils.get_color_from_hex('#66e0ff')  # water
@@ -72,7 +74,8 @@ class BoardLayout(GridLayout):
     def computer_hit_field(self):
         computer_turn = True
         while computer_turn:
-            button_index = self.computer.make_move()
+            button_index = self.computer.make_proper_move()
+            print(np.matrix(self.computer.board)) #na czas testów
             for button in self.children:
                 if button.id == str(button_index):
                     if button.text == '2':

@@ -65,7 +65,6 @@ class AI(object):
 
     def make_move(self):  # returns the x,y position which is chosen by the Algorithm
         # AI is searching for a ship on the board
-
         if self.state == AIState.AIState.Searching:
             self.select_random_field()
             if self.fields[self.row_position][self.column_position] == Fieldtype.Fieldtype.Ship.value:
@@ -125,7 +124,7 @@ class AI(object):
                 elif self.dirs == DirectionList.DirectionList.Bottom:
                     self.dirs = DirectionList.DirectionList.Left
 
-                #left
+                #left gdy dojdzie do lewej i ma skręcić w prawo, to tego nie robi :/
                 if self.dirs == DirectionList.DirectionList.Left and self.column_position > 0 and self.direction != Direction.Direction.Vertical: # and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
                     self.temp_column_position = self.column_position - self.index
                     if self.temp_column_position >= 0 and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
@@ -228,11 +227,12 @@ class AI(object):
         print("\n\n")
 
     def generate_occupied_tiles(self, y, x):
-        if self.direction == Direction.Direction.Vertical:
+        if self.direction == Direction.Direction.Vertical: #uwaga bug, gdy są przy rogach, to mogą się skrócić o 1, przez co algorytm myśli, że tam nic nie ma, a może być statek :/
+            print("pionowo")
             while y-1>=0 and y-1 != Fieldtype.Fieldtype.Miss.value:
                 y-=1
             while y+1 < self.board_length and self.board[y+1][x]!=Fieldtype.Fieldtype.Miss.value:
-                temporary=[y-1, y, y+1, y+2]
+                temporary=[y-1, y, y+1]
                 for tempy in temporary:
                     for tempx in range(x - 1, x + 2):
                         if 0 <= tempy < self.board_length:
@@ -242,7 +242,7 @@ class AI(object):
                 y+=1
 
         elif self.direction == Direction.Direction.Horizontal:
-            while x-1 >= 0 and self.board[y][x-1] == Fieldtype.Fieldtype.Hit.value:
+            while x-1 >= 0 and self.board[y][x-1] != Fieldtype.Fieldtype.Miss.value:
                 x = x-1
             while x+1 < self.board_length and self.board[y][x+1] != Fieldtype.Fieldtype.Miss.value:
                 for tempy in range(y - 1, y + 2):
