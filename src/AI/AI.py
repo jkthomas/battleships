@@ -127,7 +127,7 @@ class AI(object):
                     self.dirs = DirectionList.DirectionList.Left
 
                 #left
-                if self.dirs == DirectionList.DirectionList.Left and self.column_position > 0: # and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
+                if self.dirs == DirectionList.DirectionList.Left and self.column_position > 0 and self.direction != Direction.Direction.Vertical: # and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
                     self.temp_column_position = self.column_position - self.index
                     if self.temp_column_position >= 0 and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
                         if self.fields[self.row_position][self.temp_column_position] == Fieldtype.Fieldtype.Ship.value:
@@ -147,8 +147,8 @@ class AI(object):
                 elif self.dirs == DirectionList.DirectionList.Left:
                     self.dirs = DirectionList.DirectionList.Right
 
-                #right w pierwszym warunku jest jakiś błąd
-                if self.dirs == DirectionList.DirectionList.Right and self.column_position < self.board_length - 1: # and self.board[self.row_position][self.column_position + self.index] != Fieldtype.Fieldtype.Miss:
+                #right
+                if self.dirs == DirectionList.DirectionList.Right and self.column_position < self.board_length - 1 and self.direction != Direction.Direction.Vertical: # and self.board[self.row_position][self.column_position + self.index] != Fieldtype.Fieldtype.Miss:
                     self.temp_column_position = self.column_position + self.index
                     if self.temp_column_position < self.board_length:  #and self.board[self.row_position][self.column_position + self.index] != Fieldtype.Fieldtype.Miss:
                         if self.fields[self.row_position][self.temp_column_position] == Fieldtype.Fieldtype.Ship.value:
@@ -182,6 +182,7 @@ class AI(object):
                     elif self.ship_length == 1:
                         self.one_masted_ships-=1
 
+                    self.generate_occupied_tiles(self.row_position, self.column_position)
                     #print("Statek mial dlugosc: %d, zostalo %d x4, %d x3, %d x2, %d x1" % (self.ship_length, self.four_masted_ships, self.three_masted_ships, self.two_masted_ships, self.one_masted_ships))
                     #self.generate_occupied_tiles(self.direction)
                     self.direction = Direction.Direction.Undefined
@@ -227,8 +228,41 @@ class AI(object):
         self.one_masted_ships))
         print("\n\n")
 
-    def generate_occupied_tiles(self, direction: Direction):
-        print(direction)
+    def generate_occupied_tiles(self, y, x):
+        if self.direction == Direction.Direction.Vertical:
+            while y-1>=0 and y-1 != Fieldtype.Fieldtype.Miss.value:
+                y-=1
+            while y+1 < self.board_length and self.board[y+1][x]!=Fieldtype.Fieldtype.Miss.value:
+                temporary=[y-1, y, y+1, y+2]
+                for tempy in temporary:
+                    for tempx in range(x - 1, x + 2):
+                        if 0 <= tempy < self.board_length:
+                            if 0 <= tempx < self.board_length:
+                                if self.board[tempy][tempx] != Fieldtype.Fieldtype.Hit.value:
+                                   self.board[tempy][tempx] = Fieldtype.Fieldtype.Miss.value
+                y+=1
+                
+        elif self.direction == Direction.Direction.Horizontal:
+            while x-1 >= 0 and self.board[y][x-1] == Fieldtype.Fieldtype.Hit.value:
+                x = x-1
+            while x+1 < self.board_length and self.board[y][x+1] != Fieldtype.Fieldtype.Miss.value:
+                for tempy in range(y - 1, y + 2):
+                    for tempx in range(x - 1, x + 3):
+                        if 0 <= tempy < self.board_length:
+                            if 0 <= tempx < self.board_length:
+                                if self.board[tempy][tempx] != Fieldtype.Fieldtype.Hit.value:
+                                    self.board[tempy][tempx] = Fieldtype.Fieldtype.Miss.value
+                x+=1
+
+        else:
+            #self.print_tab()
+            for tempy in range(y-1, y+2):
+                for tempx in range(x-1, x+2):
+                    if 0 <= tempy < self.board_length:
+                        if 0 <= tempx < self.board_length:
+                            if self.board[tempy][tempx] != Fieldtype.Fieldtype.Hit.value:
+                                self.board[tempy][tempx] = Fieldtype.Fieldtype.Miss.value
+            #self.print_tab()
 
     def ships_left(self):
         if self.one_masted_ships == 0 and self.two_masted_ships == 0 and self.three_masted_ships == 0 and self.four_masted_ships == 0:
