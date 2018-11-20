@@ -1,19 +1,17 @@
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-
 from AI.AI import AI
 from Generation.Generate import Generate
 from kivy import utils
 
-import numpy as np
-
 
 class BoardLayout(GridLayout):
 
-    def __init__(self, turn_dispatcher, is_computer):
+    def __init__(self, turn_dispatcher, endgame_dispatcher, is_computer):
         super(BoardLayout, self).__init__()
         self.turn_dispatcher = turn_dispatcher
+        self.endgame_dispatcher = endgame_dispatcher
         self.is_computer = is_computer
         self.board_turn = True
         self.ship_fields_hit = 0
@@ -30,8 +28,6 @@ class BoardLayout(GridLayout):
                 background_color = utils.get_color_from_hex('#66e0ff')  # water
                 if field == 2:
                     background_color = utils.get_color_from_hex('#a6a6a6')  # ship
-                # if field == FieldType.Occupied:
-                #     background_color = utils.get_color_from_hex('#ffff00')  # occupied
 
                 field_button = Button(
                     id=str(field_id),
@@ -56,11 +52,11 @@ class BoardLayout(GridLayout):
         if self.board_turn:
             if button_instance.text == '2':
                 button_instance.background_color = utils.get_color_from_hex('#66ff33')
+                button_instance.unbind(on_release=self.player_hit_field)
                 self.ship_fields_hit += 1
                 if self.ship_fields_hit == 20:
-                    self.add_widget(Label(text="PRZEGRANA", text_size=(200, None), halign='right'))
-                    for element in self.children:
-                        element.disabled = True
+                    self.add_widget(Label(text="PRZEGRANA", text_size=(400, None), halign='right'))
+                    self.endgame_dispatcher.x = 'STOP'
             else:
                 button_instance.disabled = True
                 button_instance.background_color = utils.get_color_from_hex('#ff0000')
@@ -68,23 +64,19 @@ class BoardLayout(GridLayout):
 
                 if self.turn_dispatcher.x == 'player':
                     self.turn_dispatcher.x = 'computer'
-                #else:
-                #    self.turn_dispatcher.x = 'player'
 
     def computer_hit_field(self):
         computer_turn = True
         while computer_turn:
             button_index = self.computer.make_proper_move()
-            print(np.matrix(self.computer.board)) #na czas testów
             for button in self.children:
                 if button.id == str(button_index):
                     if button.text == '2':
                         button.background_color = utils.get_color_from_hex('#66ff33')
                         self.ship_fields_hit += 1
                         if self.ship_fields_hit == 20:
-                            self.add_widget(Label(text="PRZEGRANA", text_size=(200, None), halign='right'))
-                            for element in self.children:
-                                element.disabled = True
+                            self.add_widget(Label(text="PRZEGRANA", text_size=(400, None), halign='right'))
+                            self.endgame_dispatcher.x = 'STOP'
                             break
                     else:
                         button.disabled = True

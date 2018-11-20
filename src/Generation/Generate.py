@@ -9,7 +9,6 @@ class Generate(object):
     ships = []
 
     def __init__(self):
-        # self.board = board
         self.board = [[1 for x in range(self.board_length)] for y in range(self.board_length)]
         self.ships_length = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
 
@@ -48,7 +47,6 @@ class Generate(object):
             self.generate_ship_on_board(row_position, column_position, generation_direction, ship_length)
             return True
         else:
-            # throw
             return False
 
     def check_ship_space(self, row_position, column_position, generation_direction, ship_length):
@@ -65,7 +63,6 @@ class Generate(object):
 
             return True
         else:
-            # throw
             return False
 
     def generate_ship_on_board(self, row_position, column_position, generation_direction, ship_length):
@@ -87,7 +84,6 @@ class Generate(object):
             ship_row_positions.append(row_position)
             self.generate_occupied_fields_on_board(ship_row_positions, ship_column_positions)
         else:
-            # throw
             return False
 
     def generate_occupied_fields_on_board(self, ship_row_positions, ship_column_positions):
@@ -110,18 +106,18 @@ class Generate(object):
                     = Fieldtype.Fieldtype.Occupied.value
 
         # Corners
-        # Topleft
+        # Top-left
         if ship_row_positions[0] != 0 and ship_column_positions[0] != 0:
             self.board[ship_row_positions[0] - 1][ship_column_positions[0] - 1] = Fieldtype.Fieldtype.Occupied.value
-        # Topright
+        # Top-right
         if ship_row_positions[0] != 0 and ship_column_positions[len(ship_column_positions) - 1] != 9:
             self.board[ship_row_positions[0] - 1][ship_column_positions[len(ship_column_positions) - 1] + 1] \
                 = Fieldtype.Fieldtype.Occupied.value
-        # Bottomleft
+        # Bottom-left
         if ship_row_positions[len(ship_row_positions) - 1] != 9 and ship_column_positions[0] != 0:
             self.board[ship_row_positions[len(ship_row_positions) - 1] + 1][ship_column_positions[0] - 1] \
                 = Fieldtype.Fieldtype.Occupied.value
-        # Bottomright
+        # Bottom-right
         if ship_row_positions[len(ship_row_positions) - 1] != 9 \
                 and ship_column_positions[len(ship_column_positions) - 1] != 9:
             self.board[ship_row_positions[len(ship_row_positions) - 1] + 1][ship_column_positions[len(ship_column_positions) - 1] + 1] \
