@@ -5,7 +5,6 @@ from AI import DirectionList
 from Utilities import Direction
 import numpy as np
 
-
 class AI(object):
 
     def __init__(self, fields):
@@ -40,6 +39,7 @@ class AI(object):
         while True:
             m = self.make_move()
             if m not in self.moves and m is not None:
+            #if m is not None:
                 self.moves.append(m)
                 return m
             #else:
@@ -127,7 +127,7 @@ class AI(object):
                 #left gdy dojdzie do lewej i ma skręcić w prawo, to tego nie robi :/
                 if self.dirs == DirectionList.DirectionList.Left and self.column_position > 0 and self.direction != Direction.Direction.Vertical: # and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
                     self.temp_column_position = self.column_position - self.index
-                    if self.temp_column_position >= 0 and self.board[self.row_position][self.column_position - self.index]!=Fieldtype.Fieldtype.Miss:
+                    if self.temp_column_position >= 0: # and self.board[self.row_position][self.column_position - self.index] != Fieldtype.Fieldtype.Miss:
                         if self.fields[self.row_position][self.temp_column_position] == Fieldtype.Fieldtype.Ship.value:
                             self.board[self.row_position][self.temp_column_position] = Fieldtype.Fieldtype.Hit.value
                             self.ship_length += 1
@@ -144,6 +144,7 @@ class AI(object):
                         self.make_move()
                 elif self.dirs == DirectionList.DirectionList.Left:
                     self.dirs = DirectionList.DirectionList.Right
+                    #self.make_move()
 
                 #right
                 if self.dirs == DirectionList.DirectionList.Right and self.column_position < self.board_length - 1 and self.direction != Direction.Direction.Vertical: # and self.board[self.row_position][self.column_position + self.index] != Fieldtype.Fieldtype.Miss:
@@ -187,19 +188,19 @@ class AI(object):
                     self.ship_length = 1
                     self.dirs = DirectionList.DirectionList.Top
                     self.state = AIState.AIState.Searching
-                    self.select_random_field()
-                    if self.fields[self.row_position][self.column_position] == Fieldtype.Fieldtype.Ship.value:
-                        # changing state - found a ship
-                        self.state = AIState.AIState.Hit
-                        # saving coords of that ship
-                        # self.temp_column_position = self.column_position
-                        # self.temp_row_position = self.row_position
-
-                        self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
-                    else:
-                        self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
-                    return 10 * self.row_position + self.column_position
-                    #self.make_move()
+                    # self.select_random_field()
+                    # if self.fields[self.row_position][self.column_position] == Fieldtype.Fieldtype.Ship.value:
+                    #     # changing state - found a ship
+                    #     self.state = AIState.AIState.Hit
+                    #     # saving coords of that ship
+                    #     # self.temp_column_position = self.column_position
+                    #     # self.temp_row_position = self.row_position
+                    #
+                    #     self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Hit.value
+                    # else:
+                    #     self.board[self.row_position][self.column_position] = Fieldtype.Fieldtype.Miss.value
+                    #return 10 * self.row_position + self.column_position
+                    self.make_move()
 
             # else: #there are only one_masted_ships left
             #     self.state = AIState.AIState.Searching
@@ -237,7 +238,7 @@ class AI(object):
                     for tempx in range(x - 1, x + 2):
                         if 0 <= tempy < self.board_length:
                             if 0 <= tempx < self.board_length:
-                                if self.board[tempy][tempx] != Fieldtype.Fieldtype.Hit.value:
+                                if self.board[tempy][tempx] != Fieldtype.Fieldtype.Hit.value and self.fields[tempy][tempx] != Fieldtype.Fieldtype.Ship.value:
                                    self.board[tempy][tempx] = Fieldtype.Fieldtype.Miss.value
                 y+=1
 
@@ -249,7 +250,7 @@ class AI(object):
                     for tempx in range(x - 1, x + 3):
                         if 0 <= tempy < self.board_length:
                             if 0 <= tempx < self.board_length:
-                                if self.board[tempy][tempx] != Fieldtype.Fieldtype.Hit.value:
+                                if self.board[tempy][tempx] != Fieldtype.Fieldtype.Hit.value and self.fields[tempy][tempx] != Fieldtype.Fieldtype.Ship.value:
                                     self.board[tempy][tempx] = Fieldtype.Fieldtype.Miss.value
                 x+=1
 
