@@ -6,6 +6,9 @@ from Generation.Generate import Generate
 from kivy import utils
 
 
+showcase_mode = True
+
+
 class BoardLayout(GridLayout):
 
     def __init__(self, turn_dispatcher, endgame_dispatcher, is_computer):
@@ -23,15 +26,24 @@ class BoardLayout(GridLayout):
         fields = generator.generate_all_ships_positions()
         self.computer = AI(fields)
         field_id = 0
+        if showcase_mode:
+            textsize = [0, 0]
+        else:
+            textsize = [0.1, 0.1]
         for field_row in fields:
             for field in field_row:
                 background_color = utils.get_color_from_hex('#66e0ff')  # water
                 if field == 2:
-                    background_color = utils.get_color_from_hex('#a6a6a6')  # ship
+                    if self.is_computer:
+                        background_color = utils.get_color_from_hex('#a6a6a6')  # ship
+                    else:
+                        if showcase_mode:
+                            background_color = utils.get_color_from_hex('#a6a6a6')  # ship
 
                 field_button = Button(
                     id=str(field_id),
                     text=str(field),
+                    text_size=textsize,
                     background_color=background_color)
 
                 if not self.is_computer:
